@@ -1,4 +1,4 @@
-const ProductManager = require('./product_manager');
+const ProductManager = require('./src/productManager/product_manager');
 
 describe('ProductManager', () => {
       const productManager = new ProductManager();
@@ -608,5 +608,44 @@ describe('ProductManager', () => {
             expect(products).toEqual(products);
 
       });
+
+      test('Se agregan 10 productos y se verifica que se hayan agregado correctamente', async () => {
+
+            await productManager.deleteAllProducts();
+
+            const products = [];
+
+            for (let i = 0; i < 10; i++) {
+
+                  const product = {
+                        title: `Titulo ${i+1}`,
+                        description: `Descripcion ${i+1}`,
+                        price: 100 * (i + 1),
+                        thumbnail: `Imagen ${i+1}`,
+                        code: `Codigo ${i+1}`,
+                        stock: 10 * (i + 1),
+                        id: i + 1
+                  };
+
+                  await productManager.addProduct(
+                        product.title,
+                        product.description,
+                        product.price,
+                        product.thumbnail,
+                        product.code,
+                        product.stock
+                  );
+
+                  products.push(product);
+
+            }
+
+            const productsAdded = await productManager.getProducts();
+
+            expect(productsAdded).toEqual(products);
+
+
+      });
+
 
 });
