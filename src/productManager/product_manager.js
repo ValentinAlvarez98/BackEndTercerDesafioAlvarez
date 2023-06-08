@@ -77,7 +77,7 @@ class ProductManager {
                   // Se verifica que el código del producto no exista.
                   if (this.products.some((product) => product.code === code)) {
 
-                        console.log('El código ingresado ya pertenece a otro producto.');
+                        console.log(`El código: ${code} ingresado, ya pertenece a otro producto.`);
                         return;
 
                   }
@@ -120,7 +120,7 @@ class ProductManager {
                         } else {
 
                               // Si el producto no existe, se muestra un mensaje de error y retorna.
-                              console.log("No existe el producto con el id ingresado.");
+                              console.log(`El id: ${id} ingresado, no pertenece a ningún producto.`);
                               return;
 
                         };
@@ -189,7 +189,7 @@ class ProductManager {
                               // Se verifica que el código del producto no exista.
                               if (code && this.products.some((p) => p.id !== id && p.code === code)) {
 
-                                    console.log('El código ingresado ya pertenece a otro producto.');
+                                    console.log(`El código: ${code} ingresado, ya pertenece a otro producto.`);
                                     return;
 
                               };
@@ -204,7 +204,7 @@ class ProductManager {
 
                         } else {
 
-                              console.log('No existe el producto con el ID ingresado.');
+                              console.log(`El id: ${id} ingresado, no pertenece a ningún producto.`);
                               return;
 
                         };
@@ -301,7 +301,7 @@ class ProductManager {
 
                         } else {
 
-                              console.log('Error: no existe el producto con el ID ingresado.');
+                              console.log(`El id: ${id} ingresado, no pertenece a ningún producto.`);
                               return;
 
                         };

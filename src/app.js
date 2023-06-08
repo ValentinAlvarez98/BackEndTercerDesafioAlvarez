@@ -35,11 +35,45 @@ app.get('/products', async (req, res) => {
       } catch (error) {
 
             // Si hubo un error, se devuelve un mensaje de error.
-            res.send({
-                  error: "Error al obtener los productos."
+            res.status(500).send({
+                  status: "error",
+                  error: "Error al ejecutar la consulta."
             });
 
       }
+
+});
+
+// Se crea el endpoint para obtener un producto por su id.
+app.get('/products/:productId', async (req, res) => {
+
+      // Se obtiene el id del producto.
+      const id = req.params.productId;
+
+      // Se intenta obtener el producto.
+      try {
+
+            // Se obtiene el producto.
+            const product = await productManager.getProductById(Number(id));
+
+            // Si no se encontró el producto, se devuelve un mensaje de error.
+            if (!product) return res.status(404).send({
+                  status: "error",
+                  error: `No se ha podido encontrar el producto con el id: ${Number(id)}`
+            });
+
+            // Si se encontró el producto, se devuelve el producto.
+            res.send(product);
+
+      } catch (error) {
+
+            // Si hubo un error, se devuelve un mensaje de error.
+            res.status(500).send({
+                  status: "error",
+                  error: "Error al ejecutar la consulta."
+            });
+
+      };
 
 });
 
